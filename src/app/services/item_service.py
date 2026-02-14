@@ -228,7 +228,7 @@ def get_item_by_id_dfs_iterative(
 
                     for task in lab.tasks:
                         counter += 1
-                        if lab.id == item_id:
+                        if task.id == item_id:
                             return FoundItem(task, counter)
 
                         for step in task.steps:
@@ -324,4 +324,7 @@ def read_courses() -> List[Course]:
 
 def get_item_by_id(item_id: str, order: Order) -> Optional[FoundItem]:
     courses: list[Course] = read_courses()
+    f = open("log.txt", "w")
+    f.write(str(courses))
+    f.close()
     return get_item_by_id_dfs_iterative(courses=courses, item_id=item_id, order=order)
